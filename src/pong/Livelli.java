@@ -19,6 +19,7 @@ public class Livelli {
     private int vite;
     private int maxVite;
     private Lato umano;
+    private boolean completato = false;
     /**
      * Un gioco nuovo.
      * Pretende: niente.
@@ -63,7 +64,7 @@ public class Livelli {
 
     /** Vero se è stato vinto l'ultimo livello. */
     public boolean isCompletato() {
-        return (livello > numeroLivelli); // scrivete qui
+        return completato;
     }
 
     /** Vero se le vite sono finite. */
@@ -101,6 +102,9 @@ public class Livelli {
             if(vincitore == umano) {
                 if(livello != numeroLivelli) {
                     livello++;
+                    if(livello == numeroLivelli) {
+                        completato = true;
+                    }
                 }
             } else {
                 vite--;
@@ -117,5 +121,6 @@ public class Livelli {
         // scrivete qui
         livello = 1;
         vite = maxVite;
+        completato = false;
     }
 }
