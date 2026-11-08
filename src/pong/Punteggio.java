@@ -27,8 +27,8 @@ public class Punteggio {
 
     /**
      * Una partita nuova, 0 a 0, con la sua regola per vincere.
-     * Pretende: puntiPerVincere è almeno 1; scartoMinimo è almeno 1.
-     * Promette: una partita 0 a 0, non finita, senza vincitore e con la storia vuota.
+     * Pretende: Niente.
+     * Promette: come prima. Lancia `IllegalArgumentException` se `puntiPerVincere` è minore di 1 o `scartoMinimo` è minore di 1.
      */
     public Punteggio(int puntiPerVincere, int scartoMinimo) {
         try {
@@ -46,11 +46,8 @@ public class Punteggio {
 
     /**
      * Il lato chi ha fatto un punto.
-     * Pretende: chi non è null.
-     * Promette: se la partita non era finita, il lato chi ha un punto in più, l'altro lato non
-     *           cambia e il punto si aggiunge in fondo alla storia; se con questo punto il lato chi
-     *           vince (regola in cima alla classe), la partita è finita e il vincitore è chi.
-     *           Se la partita era già finita, non cambia niente.
+     * Pretende: nulla.
+     * Promette: come prima. Se `chi` è null lancia `IllegalArgumentException`, anche a partita finita, e non cambia niente.
      */
     public void segnaPunto(Lato chi) {
         try {
@@ -103,8 +100,8 @@ public class Punteggio {
     }
 
     /**
-     * Pretende: chi non è null.
-     * Promette: i punti del lato chi. Non cambia niente.
+     * Pretende: nulla.
+     * Promette: come prima. Lancia `IllegalArgumentException` se `chi` è null.
      */
     public int getPunti(Lato chi) {
         try {
