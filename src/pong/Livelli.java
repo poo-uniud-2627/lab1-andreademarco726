@@ -63,7 +63,7 @@ public class Livelli {
 
     /** Vero se è stato vinto l'ultimo livello. */
     public boolean isCompletato() {
-        return (livello == numeroLivelli); // scrivete qui
+        return (livello > numeroLivelli); // scrivete qui
     }
 
     /** Vero se le vite sono finite. */
@@ -88,15 +88,16 @@ public class Livelli {
      */
     public void partitaFinita(Lato vincitore) {
         // scrivete qui
-        if(!isCompletato() || !isPerso()){
-            try {
+        try {
                 if(vincitore == null) {
                     throw new IllegalArgumentException();
                 }
             } catch (IllegalArgumentException e) {
                 System.err.println(e.getMessage());
                 throw e;
-            }
+        }
+        if(!isCompletato() && !isPerso()){
+            
             if(vincitore == umano) {    
                 livello++;
             } else {
