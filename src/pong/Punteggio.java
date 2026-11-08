@@ -31,6 +31,14 @@ public class Punteggio {
      * Promette: una partita 0 a 0, non finita, senza vincitore e con la storia vuota.
      */
     public Punteggio(int puntiPerVincere, int scartoMinimo) {
+        try {
+            if (puntiPerVincere < 1 || scartoMinimo < 1) {
+                throw new IllegalArgumentException();
+            }
+        } catch (IllegalArgumentException e) {
+            System.err.println(e.getMessage());
+            throw e;
+        }
         this.puntiPerVincere = puntiPerVincere;
         this.scartoMinimo = scartoMinimo;
         this.storia = new ArrayList<>();
@@ -45,6 +53,15 @@ public class Punteggio {
      *           Se la partita era già finita, non cambia niente.
      */
     public void segnaPunto(Lato chi) {
+        try {
+            if (chi == null) {
+                throw new IllegalArgumentException();
+            }
+        } catch (IllegalArgumentException e) {
+            System.err.println(e.getMessage());
+            throw e;
+        }
+
         if (isFinita()) {
             return;
         }
@@ -57,11 +74,47 @@ public class Punteggio {
         storia.add(chi);
     }
 
+    boolean repOK() {
+        int d = 0;
+        int s = 0;
+        for (int i = 0; i < storia.size(); i++) {
+            if (storia.get(i) == null) {
+                return false;
+            }
+
+            if(storia.get(i) == Lato.SINISTRA) {
+                s++;
+            } else {
+                d++;
+            }
+
+            if(s>= puntiPerVincere && s - d >= scartoMinimo && i < storia.size() - 1) {
+                return false;    
+            }
+            if(d>= puntiPerVincere && d - s >= scartoMinimo && i < storia.size() - 1) {
+                return false;    
+            }
+
+        }
+        if(s != puntiSinistra || d != puntiDestra) {
+            return false;
+        }
+        return true;
+    }
+
     /**
      * Pretende: chi non è null.
      * Promette: i punti del lato chi. Non cambia niente.
      */
     public int getPunti(Lato chi) {
+        try {
+            if (chi == null) {
+                throw new IllegalArgumentException();
+            }
+        } catch (IllegalArgumentException e) {
+            System.err.println(e.getMessage());
+            throw e;
+        }
         return chi == Lato.SINISTRA ? puntiSinistra : puntiDestra;
     }
 
