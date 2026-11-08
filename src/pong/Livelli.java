@@ -98,8 +98,10 @@ public class Livelli {
         }
         if(!isCompletato() && !isPerso()){
             
-            if(vincitore == umano) {    
-                livello++;
+            if(vincitore == umano) {
+                if(livello != numeroLivelli) {
+                    livello++;
+                }
             } else {
                 vite--;
             }
